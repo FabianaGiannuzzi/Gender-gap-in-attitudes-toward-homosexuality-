@@ -81,3 +81,13 @@ summary(ESS0107$EDUCATION)
 ESS0107$EDUCATION <- factor(ESS0107$EDUCATION, ordered = TRUE)
 
 summary(ESS0107)
+
+
+# Filtering countries that are present in all the versions of the ESS
+ESS0107<- filter(
+  ESS0107,
+  cntry %in% c("AT", "BE", "CH", "CZ", "DE", "EE", "FI", "FR", "GB", "HU", "IE", "IT", "NO", "PL", "NL", "SI")
+)
+
+library(rio)
+export(ESS0107, "ESS0107 Recoded.dta")
