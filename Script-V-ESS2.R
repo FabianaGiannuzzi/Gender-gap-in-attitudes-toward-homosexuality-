@@ -12,86 +12,62 @@ ESS02 <- read.dta("D:/R Projects/ESS Datasets/ESS2/ESS2e03_6.dta")
 
 View(ESS02$iscoco)
 #Selecting needed variables
-ESS0107 <- select(ESSCumul, essround, cntry, freehms, gndr, rlgdgr,
-                  rlgatnd, pray, rlgblg, rlgdnm, agea, marsts, edulvlb, hinctnta,
-                  domicil, impenv, chldhhe,imwbcnt, imueclt, iscoco, isco08, mnrgtjb)
+ESS02<- select(ESS02, essround, cntry, freehms, gndr, rlgdgr,
+              rlgatnd, pray, rlgblg, rlgdnm, agea, marital, edulvla, hinctnt,
+                  domicil, impenv, chldhhe,imwbcnt, imueclt, iscoco, mnrgtjb)
 
-class(ESS0107$cntry)
+class(ESS02$cntry)
 #cntry var: transformed as factor (categorical)
-ESS0107$cntry<- as.factor(ESS0107$cntry)
-summary(ESS0107$cntry)
+ESS02$cntry<- as.factor(ESS02$cntry)
+summary(ESS02$cntry)
+
+#selecting countries
+ESS02 <- filter(
+  ESS02,
+  cntry %in% c("AT", "BE", "CH", "CZ", "DE", "EE", "FI", "FR", "GB", "HU", "IE", "IT", "NO", "PL", "NL", "SI")
+)
+
+summary(ESS02$cntry)
+
 
 #recoding variable age in six categories 
-ESS0107$AGE6cat <- ifelse(ESS0107$agea < 25,
-                          "15-24",
-                          ifelse(ESS0107$agea < 35,
+ESS02$AGE6cat <- ifelse(ESS02$agea < 25,
+                          "14-24",
+                          ifelse(ESS02$agea < 35,
                                  "25-34",
-                                 ifelse(ESS0107$agea < 45,
+                                 ifelse(ESS02$agea < 45,
                                         "35-44",
-                                        ifelse(ESS0107$agea < 55,
+                                        ifelse(ESS02$agea < 55,
                                                "45-54",
-                                               ifelse(ESS0107$agea < 65,
+                                               ifelse(ESS02$agea < 65,
                                                       "55-64",
-                                                      ifelse(ESS0107$agea < 75,
+                                                      ifelse(ESS02$agea < 75,
                                                              "65-74",
                                                              "75+"))))
                                  
                           )
 )
 
-ESS0107$AGE6cat <- factor(ESS0107$AGE6cat, ordered = TRUE)
+ESS02$AGE6cat <- factor(ESS02$AGE6cat, ordered = TRUE)
 
-summary(ESS0107$AGE6cat)
+summary(ESS02$AGE6cat)
 
 #recode level of education
-summary(ESS0107$edulvlb)
+summary(ESS02$edulvla)
 
-ESS0107 <- mutate(
-  ESS0107,
-  EDUCATION = recode(edulvlb,
-                     "Not completed ISCED level 1" = "Low level",
-                     "ISCED 1, completed primary education" = "Low level",
-                     "Vocational ISCED 2C < 2 years, no access ISCED 3" = "Low level",
-                     "General/pre-vocational ISCED 2A/2B, access ISCED 3 vocational" = "Low level",
-                     "General ISCED 2A, access ISCED 3A general/all 3" = "Low level",
-                     "Vocational ISCED 2C >= 2 years, no access ISCED 3" = "Low level",
-                     "Vocational ISCED 2A/2B, access ISCED 3 vocational"  = "Low level",
-                     "Vocational ISCED 2, access ISCED 3 general/all"= "Low level",
-                     "Vocational ISCED 3C < 2 years, no access ISCED 5"= "Medium level",
-                     "General ISCED 3 >=2 years, no access ISCED 5"= "Medium level",
-                     "General ISCED 3A/3B, access ISCED 5B/lower tier 5A"= "Medium level",
-                     "General ISCED 3A, access upper tier ISCED 5A/all 5"= "Medium level",
-                     "Vocational ISCED 3C >= 2 years, no access ISCED 5"= "Medium level",
-                     "Vocational ISCED 3A, access ISCED 5B/ lower tier 5A"= "Medium level",
-                     "Vocational ISCED 3A, access upper tier ISCED 5A/all 5"= "Medium level",
-                     "General ISCED 4A/4B, access ISCED 5B/lower tier 5A" = "Medium level",
-                     "General ISCED 4A, access upper tier ISCED 5A/all 5" = "Medium level",
-                     "ISCED 4 programmes without access ISCED 5" = "Medium level",
-                     "Vocational ISCED 4A/4B, access ISCED 5B/lower tier 5A" = "Medium level",
-                     "Vocational ISCED 4A, access upper tier ISCED 5A/all 5" = "Medium level",
-                     "ISCED 5A short, intermediate/academic/general tertiary below bachelor" = "High level",
-                     "ISCED 5B short, advanced vocational qualifications" = "High level",
-                     "ISCED 5A medium, bachelor/equivalent from lower tier tertiary" = "High level",
-                     "ISCED 5A medium, bachelor/equivalent from upper/single tier tertiary" = "High level",
-                     "ISCED 5A long, master/equivalent from lower tier tertiary" = "High level",
-                     "ISCED 5A long, master/equivalent from upper/single tier tertiary" = "High level",
-                     "ISCED 6, doctoral degree" = "High level"))
+ESS02 <- mutate(
+  ESS02,
+  EDUCATION = recode(edulvla,
+                     "Less than lower secondary education (ISCED 0-1)" = "Low level",
+                     "Lower secondary education completed (ISCED 2)" = "Low level",
+                     "Upper secondary education completed (ISCED 3)" = "Medium level",
+                     "Post-secondary non-tertiary education completed (ISCED 4)" = "Medium level",
+                     "Tertiary education completed (ISCED 5-6)" = "High level"))
 
-summary(ESS0107$EDUCATION)
-
-ESS0107$EDUCATION <- factor(ESS0107$EDUCATION, ordered = TRUE)
-
-summary(ESS0107)
+summary(ESS02$EDUCATION)
+ESS02$EDUCATION <- factor(ESS02$EDUCATION, ordered = TRUE)
 
 
-# Filtering countries that are present in all the versions of the ESS
-ESS0107<- filter(
-  ESS0107,
-  cntry %in% c("AT", "BE", "CH", "CZ", "DE", "EE", "FI", "FR", "GB", "HU", "IE", "IT", "NO", "PL", "NL", "SI")
-)
-
-library(rio)
-export(ESS0107, "ESS0107 Recoded.dta")
 
 ESS0107 <- import("ESS0107 Recoded.dta")
 
@@ -99,9 +75,9 @@ summary(ESS0107$isco08)
 summary(ESS0107$iscoco)
 
 #for occupation in the cumulative ESS we have iscoco for rounds 1-5 and isco08 for rounds 6-7
-ESS0107 <- mutate(
-  ESS0107,
-  OCCUPATION = recode(isco08,
+ESS02 <- mutate(
+  ESS02,
+  OCCUPATION = recode(iscoco,
                       "Managing directors and chief executives" = "Managers",
                       "Manufacturing managers" = "Managers",
                       "Retail and wholesale trade managers" = "Managers",
@@ -110,6 +86,7 @@ ESS0107 <- mutate(
                       "Restaurant managers" = "Managers",
                       "Construction managers" = "Managers",
                       "Education managers" = "Managers",
+                      "Finance and administration  managers" = "Managers",
                       "Professional services managers not elsewhere classified" = "Managers",
                       "Services managers not elsewhere classified" = "Managers",
                       "Secondary education teachers" = "Professionals",
@@ -144,6 +121,9 @@ ESS0107 <- mutate(
                       "Physical and engineering science technicians not elsewhere classified" = "Technicians and Associate Professionals",
                       "General office clerks " = "Clerical Support Workers",
                       "Accounting and bookkeeping clerks" = "Clerical Support Workers",
+                      "Tellers and other counter clerk" = "Clerical Support Workers",
+                      "Office clerks" = "Clerical Support Workers",
+                      "Statistical and finance clerks"= "Clerical Support Workers",
                       "Secretaries (general)" = "Clerical Support Workers",
                       "Stock clerks" = "Clerical Support Workers",
                       "Mail carriers and sorting clerks" = "Clerical Support Workers",
@@ -164,6 +144,7 @@ ESS0107 <- mutate(
                       "Teachers' aides" = "Services and Sales Workers",
                       "Beauticians and related workers" = "Services and Sales Workers",
                       "Police officers" = "Services and Sales Workers",
+                      "Waiters, waitresses and bartenders" = "Services and Sales Workers",
                       "Bartenders" = "Services and Sales Workers",
                       "Mixed crop and animal producers" = "Skilled Agricultural, Forestry and Fishery Workers",
                       "Livestock and dairy producers" = "Skilled Agricultural, Forestry and Fishery Workers",
@@ -199,40 +180,41 @@ ESS0107 <- mutate(
                       "Shelf fillers" = "Elementary Occupations",
                       "Crop farm labourers" = "Elementary Occupations",
                       "Building construction labourers" = "Elementary Occupations",
-                      "Hand packers" = "Elementary Occupations"
+                      "Hand packers" = "Elementary Occupations", 
+                      "Shop,stall,market salespers, demonstrators" = "Services and Sales Workers",
+                      "Helper,cleaner in office,hotel,other establ" = "Elementary Occupations"
   ))
 
-summary(ESS0107$OCCUPATION)
-View(ESS0107$isco08 ESS0107$OCCUPATION)
-
-View(ESS0107$isco08)
-
-View(ESS0107$iscoco)
-ESS9_00$OCCUPATION <- factor(ESS9_00$OCCUPATION, ordered = TRUE)
 
 
 
-ESS0107$OCCUPATION <- ifelse(ESS0107$isco08 < 15,
-                             "Managers",
-                             ifelse(ESS0107$isco08 < 27,
-                                    "Professionals",
-                                    ifelse(ESS0107$isco08 < 37,
-                                           "Technicians and Associate Professionals",
-                                           ifelse(ESS0107$isco08 < 47,
-                                                  "Clerical Support Workers",
-                                                  ifelse(ESS0107$isco08< 57,
-                                                         "Services and Sales Workers",
-                                                         ifelse(ESS0107$isco08 < 75,
-                                                                "65-74",
-                                                                "75+"))))
-                                    
-                             )
-)
+
+summary(ESS02$OCCUPATION)
 
 
 
-kkvkanvanvo
 
 
-View(ESS3e03_7$iscoco)
-View(ESS2e03_6$iscoco)
+
+
+
+View(ESS02$OCCUPATION)
+
+
+ESS2$OCCUPATION <- factor(ESS9_00$OCCUPATION, ordered = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+library(rio)
+export(ESS02, "ESS0107 Recoded.dta")
