@@ -187,6 +187,8 @@ ESS02 <- mutate(
                      "Special education teaching professionals" = "Professionals",
                      "Economists"= "Professionals",
                      "Dieticians and nutritionists" = "Professionals",
+                     "Public service administrative professionals" = "Professionals",
+                     "Librarians,related information prof" = "Professionals",
                       
                       "Accounting associate professionals" = "Technicians and Associate Professionals",
                       "Draughtspersons" = "Technicians and Associate Professionals",
@@ -237,6 +239,9 @@ ESS02 <- mutate(
                       "Building and fire inspectors" = "Technicians and Associate Professionals",
                      "Trade brokers" = "Technicians and Associate Professionals",
                      "Ship, aircraft controllers and technicians" = "Technicians and Associate Professionals",
+                     "Chemical engineering technicians"= "Technicians and Associate Professionals",
+                     "Chemical and physical science technicians"= "Technicians and Associate Professionals",
+                     "Athletes,sportspers, related associate prof"= "Technicians and Associate Professionals",
                      
                       "General office clerks " = "Clerical Support Workers",
                       "Accounting and bookkeeping clerks" = "Clerical Support Workers",
@@ -267,6 +272,7 @@ ESS02 <- mutate(
                      "Debt-collectors and related workers"= "Clerical Support Workers",
                      "Library, mail and related clerks"= "Clerical Support Workers",
                      "Client information clerks"= "Clerical Support Workers",
+                     "Bookmakers and croupiers"= "Clerical Support Workers",
                       
                       "Shop sales assistants" = "Services and Sales Workers",
                       "Waiters" = "Services and Sales Workers",
@@ -296,6 +302,7 @@ ESS02 <- mutate(
                      "Models, salespersons and demonstrators"= "Services and Sales Workers",
                      "Travel guides" = "Services and Sales Workers",
                      "Door-to-door and telephone salespersons"= "Services and Sales Workers",
+                     "Housekeeping, restaurant services workers"= "Services and Sales Workers",
                       
                       "Mixed crop and animal producers" = "Skilled Agricultural, Forestry and Fishery Workers",
                       "Field crop and vegetable growers"= "Skilled Agricultural, Forestry and Fishery Workers",
@@ -360,6 +367,10 @@ ESS02 <- mutate(
                      "Painter,building struct cleaner,rel trde work" = "Craft and Related Trades Workers",
                      "Bookbinders and related workers" = "Craft and Related Trades Workers",
                      "Craft printing and related trades workers" = "Craft and Related Trades Workers",
+                     "Metal moulders and coremakers"= "Craft and Related Trades Workers",
+                     "Metal wheelgrinder, polisher, tool"= "Craft and Related Trades Workers",
+                     "Floor layers and tile setters"= "Craft and Related Trades Workers",
+                     "Insulation workers"= "Craft and Related Trades Workers",
                       
                       "Heavy truck and lorry drivers" = "Plant and Machine Operators and Assemblers",
                       "Car, taxi and van drivers" = "Plant and Machine Operators and Assemblers",
@@ -405,6 +416,7 @@ ESS02 <- mutate(
                      "Chemicalprod, machine operat not else class" = "Plant and Machine Operators and Assemblers",
                      "Motorcycle drivers"= "Plant and Machine Operators and Assemblers",
                      "Ore and metal furnace operators" = "Plant and Machine Operators and Assemblers",
+                     "Metal,rubber,plastic-prod assemblers"= "Plant and Machine Operators and Assemblers",
                      
                      
                       "Cleaners and helpers in offices, hotels and other establishments" = "Elementary Occupations",
@@ -435,6 +447,8 @@ ESS02 <- mutate(
                      "Mining and construction labourers" = "Elementary Occupations",
                      "Mining and quarrying labourers" = "Elementary Occupations",
                      "Vehicle, window and related cleaners"= "Elementary Occupations",
+                     "Miners and quarry workers"= "Elementary Occupations",
+                     "Messengers,porters doorkeepers,rel worker"= "Elementary Occupations",
                       
                       "Armed forces" = "Armed Forces"
   ))
