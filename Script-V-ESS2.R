@@ -189,6 +189,9 @@ ESS02 <- mutate(
                      "Dieticians and nutritionists" = "Professionals",
                      "Public service administrative professionals" = "Professionals",
                      "Librarians,related information prof" = "Professionals",
+                     "Archiv,libr,related information prof" = "Professionals",
+                     "Ships' engineers"= "Professionals",
+                     
                       
                       "Accounting associate professionals" = "Technicians and Associate Professionals",
                       "Draughtspersons" = "Technicians and Associate Professionals",
@@ -242,6 +245,7 @@ ESS02 <- mutate(
                      "Chemical engineering technicians"= "Technicians and Associate Professionals",
                      "Chemical and physical science technicians"= "Technicians and Associate Professionals",
                      "Athletes,sportspers, related associate prof"= "Technicians and Associate Professionals",
+                     "Religious associate professionals"= "Technicians and Associate Professionals",
                      
                       "General office clerks " = "Clerical Support Workers",
                       "Accounting and bookkeeping clerks" = "Clerical Support Workers",
@@ -356,6 +360,7 @@ ESS02 <- mutate(
                      "Roofers" = "Craft and Related Trades Workers",
                      "Metalm,welder,sheetmet,structmet prep,rel work" = "Craft and Related Trades Workers",
                       "Plasterers" = "Craft and Related Trades Workers",
+                     "Craft and related trades workers"= "Craft and Related Trades Workers",
                      "Upholsterers and related workers" = "Craft and Related Trades Workers",
                      "Electric line install,repairer,cable jointer" = "Craft and Related Trades Workers",
                      "Telegraph, teleph installers and servicers" = "Craft and Related Trades Workers",
