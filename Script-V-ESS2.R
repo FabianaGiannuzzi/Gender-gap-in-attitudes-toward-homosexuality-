@@ -1,5 +1,5 @@
 # Valentina's script 
-# Dataset: ESS Cumulative (Rounds 1-7)
+# Dataset: ESS Round 2
 
 rm(list = ls())
 
@@ -8,8 +8,9 @@ library(foreign)
 library(dplyr)
 
 # 1. Importing cumulative datset 
-ESSCumul <- read.dta("D:/R Projects/ESS Datasets/ESS Datasets/ESS1-7/ESS1-8e01.dta")
+ESS02 <- read.dta("D:/R Projects/ESS Datasets/ESS2/ESS2e03_6.dta")
 
+View(ESS02$iscoco)
 #Selecting needed variables
 ESS0107 <- select(ESSCumul, essround, cntry, freehms, gndr, rlgdgr,
                   rlgatnd, pray, rlgblg, rlgdnm, agea, marsts, edulvlb, hinctnta,
@@ -211,27 +212,27 @@ ESS9_00$OCCUPATION <- factor(ESS9_00$OCCUPATION, ordered = TRUE)
 
 
 
-  ESS0107$OCCUPATION <- ifelse(ESS0107$isco08 < 15,
-                                                "Managers",
-                                                ifelse(ESS0107$isco08 < 27,
-                                                       "Professionals",
-                                                       ifelse(ESS0107$isco08 < 37,
-                                                              "Technicians and Associate Professionals",
-                                                              ifelse(ESS0107$isco08 < 47,
-                                                                     "Clerical Support Workers",
-                                                                     ifelse(ESS0107$isco08< 57,
-                                                                            "Services and Sales Workers",
-                                                                            ifelse(ESS0107$isco08 < 75,
-                                                                                   "65-74",
-                                                                                   "75+"))))
-                                                       
-                                                )
-                      )
-  
-  
-  
-  kkvkanvanvo
-  
-  
+ESS0107$OCCUPATION <- ifelse(ESS0107$isco08 < 15,
+                             "Managers",
+                             ifelse(ESS0107$isco08 < 27,
+                                    "Professionals",
+                                    ifelse(ESS0107$isco08 < 37,
+                                           "Technicians and Associate Professionals",
+                                           ifelse(ESS0107$isco08 < 47,
+                                                  "Clerical Support Workers",
+                                                  ifelse(ESS0107$isco08< 57,
+                                                         "Services and Sales Workers",
+                                                         ifelse(ESS0107$isco08 < 75,
+                                                                "65-74",
+                                                                "75+"))))
+                                    
+                             )
+)
+
+
+
+kkvkanvanvo
+
+
 View(ESS3e03_7$iscoco)
 View(ESS2e03_6$iscoco)
