@@ -707,7 +707,7 @@ ESS05 <- rename(
 names(ESS05)
 
 ESS05<- select(ESS05, essround, cntry, HOMOSEX_gen, gndr, SALIENCE_rel,
-               ATTENDANCE_rel, PRAY_rel, BELONG_rel, DENOMINATION_rel, AGE, MARITAL_STATUS, EDUCATION, INCOME,
+               ATTENDANCE_rel, PRAY_rel, BELONG_rel, DENOMINATION_rel, agea, AGE, MARITAL_STATUS, EDUCATION, INCOME,
                domicil, POSTMAT_env, CHILDREN, IMMIGRANT_att_country, IMMIGRANT_att_culture, OCCUPATION, TRAD_GEND, dweight,
                pspwght, pweight)
 
