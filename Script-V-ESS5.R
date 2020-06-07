@@ -7,7 +7,7 @@ rm(list = ls())
 library(foreign)
 library(dplyr)
 
-# 1. Importing ROUND 2  datset 
+# 1. Importing ROUND 5  datset 
 ESS05 <- read.dta("D:/R Projects/ESS Datasets/ESS5/ESS5e03_4.dta")
 
 View(ESS05$iscoco)
@@ -714,15 +714,3 @@ ESS05<- select(ESS05, essround, cntry, HOMOSEX_gen, gndr, SALIENCE_rel,
 summary(ESS05)
 library(rio)
 export(ESS05, "ESS05 Recoded.dta")
-
-
-ESS02rec <- import("D:/R Projects/Multivariate Analysis Project/ESS02 Recoded.dta")
-ESS04rec <- import("D:/R Projects/Multivariate Analysis Project/ESS04 Recoded.dta")
-
-
-ESS05rec <- import("D:/R Projects/Multivariate Analysis Project/ESS05 Recoded.dta")
-
-recoded_data <- rbind(ESS02rec, ESS04rec, ESS05rec)
-save(both_keywords_dataset, file = "both_keywords_fulldataset.RData")
-
-summary(ESS02rec)
