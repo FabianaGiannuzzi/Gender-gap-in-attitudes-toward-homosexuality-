@@ -14,7 +14,8 @@ View(ESS05$iscoco)
 # 2. Selecting needed variables
 ESS05<- select(ESS05, essround, cntry, freehms, gndr, rlgdgr,
                rlgatnd, pray, rlgblg, rlgdnm, agea, marsts, edulvlb, hinctnta,
-               domicil, impenv, chldhhe,imwbcnt, imueclt, iscoco, mnrgtjb)
+               domicil, impenv, chldhhe,imwbcnt, imueclt, iscoco, mnrgtjb, dweight,
+               pspwght, pweight)
 
 class(ESS05$cntry)
 #cntry var: transformed as factor (categorical)
@@ -679,12 +680,49 @@ ESS05 <- mutate(
 
 
 
-
+summary(ESS05)
 
 summary(ESS05$OCCUPATION)
 
 ESS05$OCCUPATION <- factor(ESS05$OCCUPATION, ordered = TRUE)
 
+ESS05 <- rename(
+  ESS05,
+   HOMOSEX_gen = freehms,
+   SALIENCE_rel = rlgdgr,
+   ATTENDANCE_rel = rlgatnd,
+  PRAY_rel = pray,
+  BELONG_rel = rlgblg,
+  DENOMINATION_rel = rlgdnm,
+ AGE = AGE6cat,
+ MARITAL_STATUS =  marsts,
+ INCOME = hinctnta,
+ POSTMAT_env = impenv,
+ CHILDREN = chldhhe,
+ IMMIGRANT_att_country = imwbcnt,
+  IMMIGRANT_att_culture = imueclt,
+ TRAD_GEND = mnrgtjb
 
+)
+names(ESS05)
+
+ESS05<- select(ESS05, essround, cntry, HOMOSEX_gen, gndr, SALIENCE_rel,
+               ATTENDANCE_rel, PRAY_rel, BELONG_rel, DENOMINATION_rel, AGE, MARITAL_STATUS, EDUCATION, INCOME,
+               domicil, POSTMAT_env, CHILDREN, IMMIGRANT_att_country, IMMIGRANT_att_culture, OCCUPATION, TRAD_GEND, dweight,
+               pspwght, pweight)
+
+summary(ESS05)
 library(rio)
 export(ESS05, "ESS05 Recoded.dta")
+
+
+ESS02rec <- import("D:/R Projects/Multivariate Analysis Project/ESS02 Recoded.dta")
+ESS04rec <- import("D:/R Projects/Multivariate Analysis Project/ESS04 Recoded.dta")
+
+
+ESS05rec <- import("D:/R Projects/Multivariate Analysis Project/ESS05 Recoded.dta")
+
+recoded_data <- rbind(ESS02rec, ESS04rec, ESS05rec)
+save(both_keywords_dataset, file = "both_keywords_fulldataset.RData")
+
+summary(ESS02rec)

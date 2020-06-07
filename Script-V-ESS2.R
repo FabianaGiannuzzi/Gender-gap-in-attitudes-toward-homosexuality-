@@ -14,7 +14,8 @@ View(ESS02$iscoco)
 # 2. Selecting needed variables
 ESS02<- select(ESS02, essround, cntry, freehms, gndr, rlgdgr,
               rlgatnd, pray, rlgblg, rlgdnm, agea, marital, edulvla, hinctnt,
-                  domicil, impenv, chldhhe,imwbcnt, imueclt, iscoco, mnrgtjb)
+                  domicil, impenv, chldhhe,imwbcnt, imueclt, iscoco, mnrgtjb,dweight,
+              pspwght, pweight)
 
 class(ESS02$cntry)
 #cntry var: transformed as factor (categorical)
@@ -66,7 +67,6 @@ ESS02 <- mutate(
 
 summary(ESS02$EDUCATION)
 ESS02$EDUCATION <- factor(ESS02$EDUCATION, ordered = TRUE)
-##################################### It generates a problem: There still is the category "don't know" and other which are useless 
 
 
 # 6. Recoding occupation 
@@ -661,10 +661,36 @@ ESS02 <- mutate(
 
 
 summary(ESS02$OCCUPATION)
-View(ESS02$OCCUPATION)
 
 ESS02$OCCUPATION <- factor(ESS02$OCCUPATION, ordered = TRUE)
 
+names(ESS02)
+ESS02 <- rename(
+  ESS02,
+  HOMOSEX_gen = freehms,
+  SALIENCE_rel = rlgdgr,
+  ATTENDANCE_rel = rlgatnd,
+  PRAY_rel = pray,
+  BELONG_rel = rlgblg,
+  DENOMINATION_rel = rlgdnm,
+  AGE = AGE6cat,
+  MARITAL_STATUS =  marital,
+  INCOME = hinctnt,
+  POSTMAT_env = impenv,
+  CHILDREN = chldhhe,
+  IMMIGRANT_att_country = imwbcnt,
+  IMMIGRANT_att_culture = imueclt,
+  TRAD_GEND = mnrgtjb
+  
+)
+names(ESS02)
+
+ESS02<- select(ESS02, essround, cntry, HOMOSEX_gen, gndr, SALIENCE_rel,
+               ATTENDANCE_rel, PRAY_rel, BELONG_rel, DENOMINATION_rel, AGE, MARITAL_STATUS, EDUCATION, INCOME,
+               domicil, POSTMAT_env, CHILDREN, IMMIGRANT_att_country, IMMIGRANT_att_culture, OCCUPATION, TRAD_GEND, dweight,
+               pspwght, pweight)
+
+summary(ESS02)
 
 
 
